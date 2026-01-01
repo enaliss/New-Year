@@ -1,0 +1,159 @@
+body {
+    margin: 0;
+    background-color: #565698;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    position: relative;
+    text-align: center;
+}
+
+/* Տեքստը */
+.message {
+    font-family: 'Pacifico', cursive;
+    font-size: 60px;
+    color: #5ed780;
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    top: -150px;
+    animation: textAppear 1.5s ease-out 5.5s forwards;
+}
+
+/* Տարեթիվ */
+.year-container {
+    margin-left: 90px;
+    font-size: 150px;
+    font-weight: bold;
+    color: #ff8cf7;
+    display: flex;
+    gap: 15px; /* Բոլորի հեռավորությունը նույնն է */
+    justify-content: center;
+    position: relative;
+    text-shadow: 0 0 12px rgba(255, 140, 209, 0.6);
+}
+
+/* Բոլոր թվերը նույն շերտում */
+.year-container span {
+    position: relative;
+    z-index: 5;
+}
+
+/* Թիվ 5 */
+.number-five {
+    animation: fiveFly 2s ease-in-out 3.5s forwards;
+}
+
+/* Թիվ 6 */
+.number-six {
+    transform: translateX(300px);
+    opacity: 0;
+    animation: 
+        sixArrive 1s ease-out 0.5s forwards,
+        sixReplaceFive 1s ease-in-out 4.5s forwards;
+}
+
+/* Փուչիկի կոնտեյներ – ԿԵՆՏՐՈՆՈՎ 6-ի վրա */
+.balloon-wrapper {
+    position: absolute;
+    top: -90px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+
+    animation: 
+        giveBalloonToFive 1s ease-in-out 2s forwards,
+        balloonFlyWithFive 2s ease-in-out 3.5s forwards;
+
+    pointer-events: none;
+}
+
+/* Փուչիկ */
+.balloon {
+    width: 50px;
+    height: 65px;
+    background-color: #d3ff8c;
+    border-radius: 50%;
+    box-shadow: inset -5px -5px 10px rgba(0,0,0,0.15);
+    z-index: 10; /* Թվերից վերև */
+    position: relative;
+}
+
+/* Թել */
+.string {
+    width: 2px;
+    height: 60px;
+    background-color: #e0e0e0;
+    margin: -2px auto 0;
+    opacity: 0.8;
+    z-index: 3; /* Թվերի հետևում */
+    position: relative;
+}
+
+/* ---------- ԱՆԻՄԱՑԻԱՆԵՐ ---------- */
+
+/* 6-ը գալիս է */
+@keyframes sixArrive {
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Փուչիկը գնում է 5-ի վրա */
+@keyframes giveBalloonToFive {
+    to {
+        transform: translate(-115px, 0);
+    }
+}
+
+/* 5-ը թռնում է վերև */
+@keyframes fiveFly {
+    to {
+        transform: translateY(-1000px) rotate(10deg);
+        opacity: 0;
+    }
+}
+
+/* Փուչիկը թռնում է 5-ի հետ */
+@keyframes balloonFlyWithFive {
+    to {
+        transform: translate(-115px, -1000px) rotate(10deg);
+        opacity: 0;
+    }
+}
+
+/* 6-ը գալիս է 5-ի տեղը */
+@keyframes sixReplaceFive {
+    to {
+        transform: translateX(-100px);
+    }
+}
+
+/* Տեքստ */
+@keyframes textAppear {
+    to {
+        opacity: 1;
+        transform: translateY(20px);
+    }
+}
+
+/* Աստղեր */
+.star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 0 10px white;
+    animation: twinkle 1.5s infinite alternate;
+}
+
+@keyframes twinkle {
+    from { opacity: 0.3; transform: scale(0.8); }
+    to { opacity: 1; transform: scale(1.2); }
+}
